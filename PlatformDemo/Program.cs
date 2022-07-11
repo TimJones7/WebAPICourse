@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-//  Add Services
+//  Add Services/dependencies
 builder.Services.AddControllers();
 
 var app = builder.Build();
