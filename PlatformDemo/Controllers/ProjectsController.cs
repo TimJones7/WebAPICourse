@@ -44,35 +44,35 @@ namespace PlatformDemo.Controllers
         /// 
         /// </returns>
         ///
-        //[HttpGet]
-        //[Route("/api/projects/{pid}/tickets")]
-        //public IActionResult GetProjectTickets(int pId, [FromQuery] int tid)
-        //{
-        //    if(tid == 0)
-        //    {
-        //        return Ok($"Reading all the tickets that belong to project {pId}");
-        //    }
-            
-        //    return Ok($"Reading project: {pId} with ticket number: {tid}.");
-        //}
-
         [HttpGet]
         [Route("/api/projects/{pid}/tickets")]
-        public IActionResult GetProjectTickets( [FromQuery] Ticket ticket)  //we have to specify from query, because complex datatype will look in the body for the information 
+        public IActionResult GetProjectTickets(int pId, [FromQuery] int tid)
         {
-
-            if(ticket == null)
+            if (tid == 0)
             {
-                return BadRequest("Parameters are not provided properly");
-            }
-            
-            if (ticket.Id == 0)
-            {
-                return Ok($"Reading all the tickets that belong to project {ticket.ProjectId}");
+                return Ok($"Reading all the tickets that belong to project {pId}");
             }
 
-            return Ok($"Reading project: {ticket.ProjectId} with ticket number: {ticket.Id}.");
+            return Ok($"Reading project: {pId} with ticket number: {tid}.");
         }
+
+        //[HttpGet]
+        //[Route("/api/projects/{pid}/tickets")]
+        //public IActionResult GetProjectTickets( [FromQuery] Ticket ticket)  //we have to specify from query, because complex datatype will look in the body for the information 
+        //{
+
+        //    if(ticket == null)
+        //    {
+        //        return BadRequest("Parameters are not provided properly");
+        //    }
+
+        //    if (ticket.Id == 0)
+        //    {
+        //        return Ok($"Reading all the tickets that belong to project {ticket.ProjectId}");
+        //    }
+
+        //    return Ok($"Reading project: {ticket.ProjectId} with ticket number: {ticket.Id}.");
+        //}
 
 
 

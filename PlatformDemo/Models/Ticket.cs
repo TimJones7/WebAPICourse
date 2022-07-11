@@ -5,10 +5,9 @@ namespace PlatformDemo.Models
     public class Ticket
     {
 
-        [FromQuery(Name = "tid")]
+        
         public int Id { get; set; }
-
-        [FromRoute(Name = "pid")]
+        
         public int ProjectId { get; set; }
         
         public string Title { get; set; }

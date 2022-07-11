@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PlatformDemo.Models;
 
 namespace PlatformDemo.Controllers
 {
@@ -21,9 +22,9 @@ namespace PlatformDemo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Create([FromBody] Ticket ticket)
         {
-            return Ok("Creating a ticket.");
+            return Ok(ticket); //This will automatically serialize object to json
         }
 
         [HttpPut]
