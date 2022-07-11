@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PlatformDemo.Models;
 
 namespace PlatformDemo.Controllers
 {
@@ -30,13 +31,11 @@ namespace PlatformDemo.Controllers
             return Ok("Updating a project.");
         }
 
-
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             return Ok($"Deleting project id: {id}.");
         }
-
 
         /// <summary>
         /// api/projects/{pid}/tickets?tid={tid}
@@ -45,17 +44,39 @@ namespace PlatformDemo.Controllers
         /// 
         /// </returns>
         ///
+        //[HttpGet]
+        //[Route("/api/projects/{pid}/tickets")]
+        //public IActionResult GetProjectTickets(int pId, [FromQuery] int tid)
+        //{
+        //    if(tid == 0)
+        //    {
+        //        return Ok($"Reading all the tickets that belong to project {pId}");
+        //    }
+            
+        //    return Ok($"Reading project: {pId} with ticket number: {tid}.");
+        //}
+
         [HttpGet]
         [Route("/api/projects/{pid}/tickets")]
-        public IActionResult GetProjectTickets(int pId, [FromQuery] int tid)
+        public IActionResult GetProjectTickets( [FromQuery] Ticket ticket)  //we have to specify from query, because complex datatype will look in the body for the information 
         {
-            if(tid == 0)
+
+            if(ticket == null)
             {
-                return Ok($"Reading all the tickets that belong to project {pId}");
+                return BadRequest("Parameters are not provided properly");
             }
             
-            return Ok($"Reading project: {pId} with ticket number: {tid}.");
+            if (ticket.Id == 0)
+            {
+                return Ok($"Reading all the tickets that belong to project {ticket.ProjectId}");
+            }
+
+            return Ok($"Reading project: {ticket.ProjectId} with ticket number: {ticket.Id}.");
         }
+
+
+
+
 
 
 
