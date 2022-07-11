@@ -4,7 +4,7 @@ namespace PlatformDemo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProjectController : ControllerBase
+    public class ProjectsController : ControllerBase
     {
         [HttpGet]
         public IActionResult Get()
@@ -38,9 +38,24 @@ namespace PlatformDemo.Controllers
         }
 
 
-
-
-
+        /// <summary>
+        /// api/projects/{pid}/tickets?tid={tid}
+        /// </summary>
+        /// <returns>
+        /// 
+        /// </returns>
+        ///
+        [HttpGet]
+        [Route("/api/projects/{pid}/tickets")]
+        public IActionResult GetProjectTickets(int pId, [FromQuery] int tid)
+        {
+            if(tid == 0)
+            {
+                return Ok($"Reading all the tickets that belong to project {pId}");
+            }
+            
+            return Ok($"Reading project: {pId} with ticket number: {tid}.");
+        }
 
 
 
