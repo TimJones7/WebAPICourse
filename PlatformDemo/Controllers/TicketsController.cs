@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PlatformDemo.Filters;
 using PlatformDemo.Models;
 
 namespace PlatformDemo.Controllers
@@ -12,6 +13,21 @@ namespace PlatformDemo.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            //  Authentication and Authorization
+            
+            //  Generic Validation
+            
+            //  Retrieve the Input Data
+            
+            //  Data Validation
+            
+            //  Application Logic -> the core biz logic
+            
+            //  Format Output Data -> what is sent back
+            
+            //  Exception Handling
+                  
+            
             return Ok("Reading all the tickets.");
         }
 
@@ -22,10 +38,22 @@ namespace PlatformDemo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Ticket ticket)
+        [Route("/api/v1/tickets")]
+        public IActionResult CreateV1([FromBody] Ticket ticket)
         {
             return Ok(ticket); //This will automatically serialize object to json
         }
+
+        [HttpPost]
+        [Route("/api/v2/tickets")]
+        [Ticket_EnsureEnteredDate]
+        public IActionResult CreateV2([FromBody] Ticket ticket)
+        {
+            return Ok(ticket); //This will automatically serialize object to json
+        }
+
+
+
 
         [HttpPut]
         public IActionResult Update()

@@ -22,7 +22,11 @@ namespace PlatformDemo.Models
         public string Owner { get; set; }
 
         [Ticket_EnsureDueDateForTicketOwner]
+        [Ticket_EnsureDueDateIsFuture_Attribute]
         public DateTime? DueDate { get; set; }
+        
+
+        public DateTime? EnteredDate { get; set; }
         
     }
 }
