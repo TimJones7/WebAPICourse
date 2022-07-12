@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PlatformDemo.Filters;
-using PlatformDemo.Models;
+﻿using Core.Models;
+using Microsoft.AspNetCore.Mvc;
+
+
 
 namespace PlatformDemo.Controllers
 {
@@ -44,14 +45,7 @@ namespace PlatformDemo.Controllers
             return Ok(ticket); //This will automatically serialize object to json
         }
 
-        [HttpPost]
-        [Route("/api/v2/tickets")]
-        [Ticket_EnsureEnteredDate]
-        public IActionResult CreateV2([FromBody] Ticket ticket)
-        {
-            return Ok(ticket); //This will automatically serialize object to json
-        }
-
+       
 
 
 
