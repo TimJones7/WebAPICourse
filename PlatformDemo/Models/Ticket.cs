@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PlatformDemo.ModelValidations;
+using System.ComponentModel.DataAnnotations;
 
 namespace PlatformDemo.Models
 {
@@ -6,13 +8,21 @@ namespace PlatformDemo.Models
     {
 
         
-        public int Id { get; set; }
+        public int? Id { get; set; }
+
+        [Required]
+        public int? ProjectId { get; set; }
         
-        public int ProjectId { get; set; }
-        
+        [Required]
         public string Title { get; set; }
         
+        
         public string Description { get; set; }
+        
+        public string Owner { get; set; }
+
+        [Ticket_EnsureDueDateForTicketOwner]
+        public DateTime? DueDate { get; set; }
         
     }
 }
