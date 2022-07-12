@@ -1,7 +1,12 @@
+using PlatformDemo.Filters;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //  Add Services/dependencies
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => 
+{
+    options.Filters.Add<Version1DiscontinueResourceFilter>();
+});
 
 var app = builder.Build();
 
