@@ -19,10 +19,10 @@ namespace Core.Models
         [StringLength(100)]
         public string Title { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [StringLength(50)]
-        public string Owner { get; set; }
+        public string? Owner { get; set; }
 
         [Ticket_EnsureReportDatePresence]
         public DateTime? ReportDate { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using DataStore.EF;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -11,25 +12,21 @@ namespace PlatformDemo.Controllers
     [Route("api/[controller]")] //Attribute routing on the controller 
     public class TicketsController : ControllerBase
     {
+        private readonly BugsContext _db;
+
+        public TicketsController(BugsContext db)
+        {
+            this._db = db;
+            _db.Database.EnsureDeleted();
+            _db.Database.EnsureCreated();
+        }
+
+        
+
         [HttpGet]
         public IActionResult Get()
-        {
-            //  Authentication and Authorization
-            
-            //  Generic Validation
-            
-            //  Retrieve the Input Data
-            
-            //  Data Validation
-            
-            //  Application Logic -> the core biz logic
-            
-            //  Format Output Data -> what is sent back
-            
-            //  Exception Handling
-                  
-            
-            return Ok("Reading all the tickets.");
+        { 
+            return Ok(_db.Tickets.ToList());
         }
 
         [HttpGet("{id}")]
